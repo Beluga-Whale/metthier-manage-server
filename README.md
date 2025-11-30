@@ -43,11 +43,11 @@ npm install
 
 #### 3. .env (Backend)
 
-# 💡 DATABASE: ตั้งค่าการเชื่อมต่อ PostgreSQL
+### 💡 DATABASE: ตั้งค่าการเชื่อมต่อ PostgreSQL
 
 DATABASE_URL="postgresql://postgres:230641@localhost:5432/metthier_db?schema=public"
 
-# 💡 SERVER: ตั้งค่า Port สำหรับ Express Server
+### 💡 SERVER: ตั้งค่า Port สำหรับ Express Server
 
 PORT=8000
 
