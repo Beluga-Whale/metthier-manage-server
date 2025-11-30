@@ -69,7 +69,7 @@ export const deleteTask = async (
 ) => {
   try {
     const task = await deleteTaskService(Number(req.params.id));
-    return res.status(204).json({ message: "Task deleted successfully" });
+    return res.status(200).json({ message: "Task deleted successfully" });
   } catch (error) {
     next(error);
   }
