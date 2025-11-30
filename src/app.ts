@@ -14,7 +14,7 @@ app.get("/", (req: Request, res: Response) => {
   res.status(200).json({ message: "Task Management API is up and running!" });
 });
 
-app.use("/task", taskRoute);
+app.use("/tasks", taskRoute);
 app.use(errorHandler);
 
 export default app;
