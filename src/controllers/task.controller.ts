@@ -14,7 +14,8 @@ export const getAllTask = async (
   next: NextFunction
 ) => {
   try {
-    const task = await getAllTasksService();
+    const status = req.query.status ?? "";
+    const task = await getAllTasksService(status.toString());
     return res.status(200).json({ data: task });
   } catch (error) {
     next(error);

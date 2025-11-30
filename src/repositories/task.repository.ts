@@ -12,7 +12,22 @@ export interface UpdateTask {
   status?: TaskStatus;
 }
 
-export const findManyTask = async (): Promise<Task[]> => {
+export const findManyTask = async (status: string): Promise<Task[]> => {
+  console.log("status", status);
+  if (status !== "" && status !== undefined) {
+    return await prisma.task.findMany({
+      where: {
+        status:
+          status === "IN_PROGRESS"
+            ? TaskStatus.IN_PROGRESS
+            : status === "TO_DO"
+            ? TaskStatus.TO_DO
+            : TaskStatus.DONE,
+        deletedAt: null,
+      },
+    });
+  }
+  console.log("B");
   return await prisma.task.findMany({
     where: {
       deletedAt: null,

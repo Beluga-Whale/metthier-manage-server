@@ -10,8 +10,8 @@ import {
 } from "../repositories/task.repository";
 import createError from "http-errors";
 
-export const getAllTasksService = async (): Promise<Task[]> => {
-  return await findManyTask();
+export const getAllTasksService = async (status: string): Promise<Task[]> => {
+  return await findManyTask(status);
 };
 
 export const getTaskByIdService = async (id: number): Promise<Task> => {
