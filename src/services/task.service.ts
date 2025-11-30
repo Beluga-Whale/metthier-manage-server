@@ -8,6 +8,7 @@ import {
   updateTask,
   deleteSoftTask,
 } from "../repositories/task.repository";
+import createError from "http-errors";
 
 export const getAllTasksService = async (): Promise<Task[]> => {
   return await findManyTask();
@@ -16,16 +17,15 @@ export const getAllTasksService = async (): Promise<Task[]> => {
 export const getTaskByIdService = async (id: number): Promise<Task> => {
   const task = await findTaskById(id);
   if (!task) {
-    throw new Error(`Task with ID ${id} not found.`);
+    throw createError.NotFound(`Task with ID ${id} not found`);
   }
   return task;
 };
 
 export const createTaskService = async (data: CreateTaks): Promise<Task> => {
   if (!data.title || data.title.trim() === "") {
-    throw new Error("Title is required for creating a task.");
+    throw createError.BadRequest("Title is required for creating a task");
   }
-
   return await createTask(data);
 };
 
@@ -35,17 +35,15 @@ export const updateTaskService = async (
 ): Promise<Task> => {
   const task = await findTaskById(id);
   if (!task) {
-    throw new Error(`Task with ID ${id} not found can't update`);
+    throw createError.NotFound(`Task with ID ${id} not found`);
   }
-
   return await updateTask(id, data);
 };
 
 export const deleteTaskService = async (id: number): Promise<Task> => {
   const task = await findTaskById(id);
   if (!task) {
-    throw new Error(`Task with ID ${id} not found can't delete`);
+    throw createError.NotFound(`Task with ID ${id} not found`);
   }
-
   return await deleteSoftTask(id);
 };
