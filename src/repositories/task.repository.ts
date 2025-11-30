@@ -1,6 +1,6 @@
 import { Task, TaskStatus } from "@prisma/client";
-import prisma from "./prisma.client";
 
+import prisma from "./prisma.client";
 export interface CreateTaks {
   title: string;
   description?: string;
